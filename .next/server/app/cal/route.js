@@ -196,7 +196,6 @@ const dgh0_392921_48ef7ad46393_namespaceObject = JSON.parse('{"Bq":"-----BEGIN P
 
 async function GET(request) {
     //return new Response('Hello world from Deno Deploy!');
-    console.log("headers", request.headers);
     const GOOGLE_CALENDAR_ID = "97cf323203a7635c813c69e2e2b5467e94657a3e9900eb1245089fc76d658641@group.calendar.google.com";
     const jAuth = new src/* google */.lkr.auth.JWT(dgh0_392921_48ef7ad46393_namespaceObject.yR, undefined, dgh0_392921_48ef7ad46393_namespaceObject.Bq, [
         "https://www.googleapis.com/auth/calendar.readonly"

@@ -265,12 +265,12 @@ __webpack_require__.d(__webpack_exports__, {
 var jsx_runtime_ = __webpack_require__(56786);
 // EXTERNAL MODULE: external "next/dist/compiled/react"
 var react_ = __webpack_require__(18038);
-// EXTERNAL MODULE: ./src/app/components/nav/page.tsx + 2 modules
-var page = __webpack_require__(22779);
+// EXTERNAL MODULE: ./src/app/components/nav/page.tsx
+var page = __webpack_require__(12947);
 // EXTERNAL MODULE: ./src/app/components/layout/page.tsx + 1 modules
 var layout_page = __webpack_require__(32284);
-// EXTERNAL MODULE: ./src/app/components/gallery/page.tsx + 1 modules
-var gallery_page = __webpack_require__(14683);
+// EXTERNAL MODULE: ./src/app/components/gallery/page.tsx
+var gallery_page = __webpack_require__(39191);
 // EXTERNAL MODULE: ./node_modules/next/navigation.js
 var navigation = __webpack_require__(59483);
 ;// CONCATENATED MODULE: ./public/images.json
@@ -295,7 +295,6 @@ function Gallery() {
         router
     ]);
     (0,react_.useEffect)(()=>{
-        console.log("catId", catId);
         let images = [];
         for(let i = 0; i < images_namespaceObject.length; i++){
             if (images_namespaceObject[i].catId === catId) {
@@ -361,7 +360,7 @@ const __default__ = proxy.default;
 var __webpack_require__ = require("../../webpack-runtime.js");
 __webpack_require__.C(exports);
 var __webpack_exec__ = (moduleId) => (__webpack_require__(__webpack_require__.s = moduleId))
-var __webpack_exports__ = __webpack_require__.X(0, [669,512,345,232,19,891,779,284,683], () => (__webpack_exec__(70299)));
+var __webpack_exports__ = __webpack_require__.X(0, [669,512,345,232,329,891,520,947,284,191], () => (__webpack_exec__(70299)));
 module.exports = __webpack_exports__;
 
 })();

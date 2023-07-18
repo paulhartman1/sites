@@ -14,7 +14,7 @@ export default function Gallery(props: any) {
 
   return (
     <Grid.Container gap={2}>
-      {images.map(
+      {images?.map(
         (image: any) =>
            (
             <Grid xs={12} sm={3} key={image.id}>

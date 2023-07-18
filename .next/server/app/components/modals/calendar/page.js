@@ -260,57 +260,10 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ 85482:
-/***/ (() => {
+/***/ 8776:
+/***/ ((__unused_webpack_module, __unused_webpack_exports, __webpack_require__) => {
 
-
-
-/***/ }),
-
-/***/ 6079:
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* binding */ Calendar)
-/* harmony export */ });
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(56786);
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react_calendar__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(95902);
-/* harmony import */ var react_calendar_dist_Calendar_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(18171);
-/* harmony import */ var react_calendar_dist_Calendar_css__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_calendar_dist_Calendar_css__WEBPACK_IMPORTED_MODULE_1__);
-
-
-
-var TileClasses;
-(function(TileClasses) {
-    TileClasses[TileClasses["BOOKED"] = 0] = "BOOKED";
-    TileClasses[TileClasses["AVAILABLE"] = 1] = "AVAILABLE";
-    TileClasses[TileClasses["UNAVAILABLE"] = 2] = "UNAVAILABLE";
-})(TileClasses || (TileClasses = {}));
-function tileDisabled({ date, view }) {
-    return false;
-}
-async function getCalendarData() {
-    const res = await fetch("http://localhost:3000/cal").then((res)=>{
-        console.log(res);
-        return res;
-    }).catch((err)=>{
-        console.log(err);
-    });
-// const data = await res.json();
-// return data;
-}
-function Calendar(props) {
-    return /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(react_calendar__WEBPACK_IMPORTED_MODULE_2__/* ["default"] */ .ZP, {
-        onChange: props.onChange,
-        value: props.date,
-        tileClassName: "red",
-        tileDisabled: tileDisabled
-    });
-}
-
+Promise.resolve(/* import() eager */).then(__webpack_require__.bind(__webpack_require__, 79520))
 
 /***/ }),
 
@@ -320,39 +273,23 @@ function Calendar(props) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* binding */ CalendarModal)
+/* harmony export */   $$typeof: () => (/* binding */ $$typeof),
+/* harmony export */   __esModule: () => (/* binding */ __esModule),
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(56786);
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _nextui_org_react__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(33400);
-/* harmony import */ var _nextui_org_react__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_nextui_org_react__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(46261);
-/* harmony import */ var _app_components_calendar_page__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(6079);
+/* harmony import */ var next_dist_build_webpack_loaders_next_flight_loader_module_proxy__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(17814);
+
+const proxy = (0,next_dist_build_webpack_loaders_next_flight_loader_module_proxy__WEBPACK_IMPORTED_MODULE_0__.createProxy)(String.raw`/Users/paulhartman/Documents/repos/personal/dadz/src/app/components/modals/calendar/page.tsx`)
+
+// Accessing the __esModule property and exporting $$typeof are required here.
+// The __esModule getter forces the proxy target to create the default export
+// and the $$typeof value is for rendering logic to determine if the module
+// is a client boundary.
+const { __esModule, $$typeof } = proxy;
+const __default__ = proxy.default;
 
 
-
-
-// export interface CalendarModalProps {
-//     open: boolean;
-//     onClose(): void;
-//     onChange(date?:Date): void;
-//     date?: Date;
-// }
-function CalendarModal(props) {
-    return /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_nextui_org_react__WEBPACK_IMPORTED_MODULE_3__.Modal, {
-        closeButton: true,
-        "aria-labelledby": "modal-title",
-        open: props.open,
-        onClose: props.onClose,
-        children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_nextui_org_react__WEBPACK_IMPORTED_MODULE_3__.Modal.Body, {
-            children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_app_components_calendar_page__WEBPACK_IMPORTED_MODULE_2__["default"], {
-                onChange: props.onChange,
-                date: props.date
-            })
-        })
-    });
-}
-
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (__default__);
 
 /***/ })
 
@@ -363,7 +300,7 @@ function CalendarModal(props) {
 var __webpack_require__ = require("../../../../webpack-runtime.js");
 __webpack_require__.C(exports);
 var __webpack_exec__ = (moduleId) => (__webpack_require__(__webpack_require__.s = moduleId))
-var __webpack_exports__ = __webpack_require__.X(0, [669,512,770,400,796,891], () => (__webpack_exec__(27941)));
+var __webpack_exports__ = __webpack_require__.X(0, [669,512,345,232,329,891,520], () => (__webpack_exec__(27941)));
 module.exports = __webpack_exports__;
 
 })();

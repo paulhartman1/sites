@@ -20,7 +20,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 function Event(props) {
-    console.log("props", props);
     const [date, setDate] = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)("");
     const [title, setTitle] = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)("");
     const [location, setLocation] = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)("");

@@ -27,7 +27,6 @@ export default function Gallery() {
   }, [router]);
 
   useEffect(() => {
-    console.log('catId', catId);
     let images = [];
     for (let i = 0; i < imgData.length; i++) {
       if (

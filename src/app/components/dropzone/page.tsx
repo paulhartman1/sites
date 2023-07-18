@@ -1,4 +1,5 @@
 /* eslint-disable react/no-unescaped-entities */
+'use client';
 import React, {useMemo} from 'react';
 import {useDropzone} from 'react-dropzone';
 import {baseStyle, focusedStyle, acceptStyle, rejectStyle} from './style.ts'

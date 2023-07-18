@@ -1,3 +1,4 @@
+'use client';
 import React from 'react';
 import { Card, Col, Text } from '@nextui-org/react';
 export default function ArtCard(props: any) {

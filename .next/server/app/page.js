@@ -252,7 +252,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(18038);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _components_nav_page__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(22779);
+/* harmony import */ var _components_nav_page__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(12947);
 /* harmony import */ var _components_layout_page__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(32284);
 /* __next_internal_client_entry_do_not_use__ default auto */ 
 
@@ -303,7 +303,7 @@ const __default__ = proxy.default;
 var __webpack_require__ = require("../webpack-runtime.js");
 __webpack_require__.C(exports);
 var __webpack_exec__ = (moduleId) => (__webpack_require__(__webpack_require__.s = moduleId))
-var __webpack_exports__ = __webpack_require__.X(0, [669,512,345,232,19,891,779,284], () => (__webpack_exec__(31629)));
+var __webpack_exports__ = __webpack_require__.X(0, [669,512,345,232,329,891,520,947,284], () => (__webpack_exec__(31629)));
 module.exports = __webpack_exports__;
 
 })();

@@ -265,8 +265,8 @@ __webpack_require__.d(__webpack_exports__, {
 var jsx_runtime_ = __webpack_require__(56786);
 // EXTERNAL MODULE: external "next/dist/compiled/react"
 var react_ = __webpack_require__(18038);
-// EXTERNAL MODULE: ./src/app/components/nav/page.tsx + 2 modules
-var page = __webpack_require__(22779);
+// EXTERNAL MODULE: ./src/app/components/nav/page.tsx
+var page = __webpack_require__(12947);
 // EXTERNAL MODULE: ./src/app/components/layout/page.tsx + 1 modules
 var layout_page = __webpack_require__(32284);
 // EXTERNAL MODULE: ./src/app/components/event/page.tsx
@@ -282,13 +282,11 @@ const events_namespaceObject = JSON.parse('[{"title":"Miracle on 4th Street","de
 
 function PerformaceSchedule() {
     const [events, setEvents] = (0,react_.useState)(events_namespaceObject);
-    console.log("events", events);
     return /*#__PURE__*/ (0,jsx_runtime_.jsxs)(jsx_runtime_.Fragment, {
         children: [
             /*#__PURE__*/ jsx_runtime_.jsx(page["default"], {}),
             /*#__PURE__*/ jsx_runtime_.jsx(layout_page["default"], {
                 bodyData: events.map((event, i)=>{
-                    console.log("event", event);
                     return /*#__PURE__*/ jsx_runtime_.jsx(event_page["default"], {
                         event: event
                     }, i);
@@ -334,7 +332,7 @@ const __default__ = proxy.default;
 var __webpack_require__ = require("../../webpack-runtime.js");
 __webpack_require__.C(exports);
 var __webpack_exec__ = (moduleId) => (__webpack_require__(__webpack_require__.s = moduleId))
-var __webpack_exports__ = __webpack_require__.X(0, [669,512,345,232,19,891,779,284,797], () => (__webpack_exec__(63354)));
+var __webpack_exports__ = __webpack_require__.X(0, [669,512,345,232,329,891,520,947,284,797], () => (__webpack_exec__(63354)));
 module.exports = __webpack_exports__;
 
 })();

@@ -3,7 +3,6 @@ import { Grid, Text } from '@nextui-org/react';
 import { useEffect, useState } from 'react';
 
 export default function Event(props: any) {
-  console.log('props', props);
   const [date, setDate] = useState('');
   const [title, setTitle] = useState('');
   const [location, setLocation] = useState('');

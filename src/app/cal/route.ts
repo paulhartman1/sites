@@ -4,7 +4,6 @@ import keyFile from '../../../public/dgh0-392921-48ef7ad46393.json';
 export async function GET(request: Request) {
    //return new Response('Hello world from Deno Deploy!');
 
-   console.log('headers',request.headers);
     const GOOGLE_CALENDAR_ID = '97cf323203a7635c813c69e2e2b5467e94657a3e9900eb1245089fc76d658641@group.calendar.google.com';
 
     const jAuth = new google.auth.JWT(

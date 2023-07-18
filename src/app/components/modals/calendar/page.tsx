@@ -1,3 +1,4 @@
+'use client';
 import { Modal } from "@nextui-org/react";
 import React, {useState} from "react";
 import Calendar from '@/app/components/calendar/page';
