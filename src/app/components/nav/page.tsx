@@ -37,9 +37,9 @@ export default function Nav() {
   return (
 
  <>
-    <Navbar isBordered  variant='floating' >
+    <Navbar isBordered  variant='floating'>
       <Navbar.Toggle  showIn={'md'}/>
-        <Navbar.Brand>
+        <Navbar.Brand >
             {/* <Image
                 src="/artistProfile.png"
                 alt="NextUI"
@@ -54,7 +54,7 @@ export default function Nav() {
         </Navbar.Brand>
       <Navbar.Content hideIn={'md'}>
        
-        <Navbar.Link href="#" onClick={() => {setShowCalModal(true)}}>Book Me</Navbar.Link>
+        <Navbar.Link href="#" onClick={() => {setShowCalModal(true)}} >Book Me</Navbar.Link>
         {categories.map((category:any, index:number) => {
           return <Navbar.Link href={`/${index}`} key={index}>{category[index]}</Navbar.Link>
         })}

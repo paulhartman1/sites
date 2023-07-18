@@ -1,6 +1,6 @@
 'use client';
 /* eslint-disable react/no-unescaped-entities */
-import { Image, Grid } from '@nextui-org/react';
+import { Image, Grid, Button } from '@nextui-org/react';
 import { useEffect, useState } from 'react';
 import LandingText from '../../../../public/landingText';
 
@@ -28,9 +28,16 @@ export default function Layout(props: any) {
           objectFit="cover"
         />
       </Grid>
-      <Grid xs={12} sm={9}>
-        <div className="banner-body">{bodyData}</div>
-      </Grid>
+      <Grid.Container xs={12} sm={9}>
+        <Grid xs={12} >
+          <div className="banner-body">{bodyData}</div>
+        </Grid>
+        <Grid xs={12}>
+          <Button color="primary" className='banner-body' css={{textAlign:'center', margin:'auto', backgroundColor:'$purple800'}}>
+            Contact Me
+          </Button>
+        </Grid>
+      </Grid.Container>
     </Grid.Container>
   );
 }
