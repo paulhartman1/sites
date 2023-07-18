@@ -1,0 +1,18 @@
+{
+  "/favicon.ico/route": "app/favicon.ico/route.js",
+  "/page": "app/page.js",
+  "/4/page": "app/4/page.js",
+  "/[...galleryTitle]/page": "app/[...galleryTitle]/page.js",
+  "/cal/route": "app/cal/route.js",
+  "/events/page": "app/events/page.js",
+  "/upload/page": "app/upload/page.js",
+  "/components/artCard/page": "app/components/artCard/page.js",
+  "/components/event/page": "app/components/event/page.js",
+  "/components/calendar/page": "app/components/calendar/page.js",
+  "/components/dropzone/page": "app/components/dropzone/page.js",
+  "/components/gallery/page": "app/components/gallery/page.js",
+  "/components/nav/page": "app/components/nav/page.js",
+  "/components/layout/page": "app/components/layout/page.js",
+  "/components/modals/calendar/page": "app/components/modals/calendar/page.js",
+  "/components/box/page": "app/components/box/page.js"
+}
