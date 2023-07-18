@@ -25,16 +25,18 @@ var react_ = __webpack_require__(18038);
 
 
 function ArtCard(props) {
-    return /*#__PURE__*/ jsx_runtime_.jsx(cjs.Card, {
-        style: {
-            width: "200px"
-        },
-        children: /*#__PURE__*/ jsx_runtime_.jsx(cjs.Card.Image, {
-            src: props.image,
-            objectFit: "cover",
-            width: "100%",
-            height: 240,
-            alt: props.title
+    return /*#__PURE__*/ jsx_runtime_.jsx(jsx_runtime_.Fragment, {
+        children: /*#__PURE__*/ jsx_runtime_.jsx(cjs.Card, {
+            style: {
+                width: "200px"
+            },
+            children: /*#__PURE__*/ jsx_runtime_.jsx(cjs.Card.Image, {
+                src: props.image,
+                objectFit: "cover",
+                width: "100%",
+                height: 240,
+                alt: props.title
+            })
         })
     });
 }

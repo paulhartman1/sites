@@ -275,16 +275,18 @@ __webpack_require__.r(__webpack_exports__);
 
 
 function ArtCard(props) {
-    return /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_nextui_org_react__WEBPACK_IMPORTED_MODULE_2__.Card, {
-        style: {
-            width: "200px"
-        },
-        children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_nextui_org_react__WEBPACK_IMPORTED_MODULE_2__.Card.Image, {
-            src: props.image,
-            objectFit: "cover",
-            width: "100%",
-            height: 240,
-            alt: props.title
+    return /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
+        children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_nextui_org_react__WEBPACK_IMPORTED_MODULE_2__.Card, {
+            style: {
+                width: "200px"
+            },
+            children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_nextui_org_react__WEBPACK_IMPORTED_MODULE_2__.Card.Image, {
+                src: props.image,
+                objectFit: "cover",
+                width: "100%",
+                height: 240,
+                alt: props.title
+            })
         })
     });
 }

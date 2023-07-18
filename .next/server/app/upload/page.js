@@ -298,52 +298,39 @@ function Upload(props) {
     const { getRootProps, getInputProps } = (0,react_dropzone__WEBPACK_IMPORTED_MODULE_2__.useDropzone)({
         accept: {
             "image/*": []
-        },
-        onDrop: (acceptedFiles)=>{
-            setFiles(acceptedFiles.map((file)=>Object.assign(file, {
-                    preview: URL.createObjectURL(file)
-                })));
         }
     });
-    const thumbs = files.map((file)=>/*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-            style: thumb,
-            children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-                style: thumbInner,
-                children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("img", {
-                    src: file.preview,
-                    style: img,
-                    // Revoke data uri after image is loaded
-                    onLoad: ()=>{
-                        URL.revokeObjectURL(file.preview);
-                    }
-                })
-            })
-        }, file.name));
-    (0,react__WEBPACK_IMPORTED_MODULE_1__.useEffect)(()=>{
-        // Make sure to revoke the data uris to avoid memory leaks, will run on unmount
-        return ()=>files.forEach((file)=>URL.revokeObjectURL(file.preview));
-    }, []);
-    return /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("section", {
+    // const thumbs = files.map(file => (
+    //   // <div style={thumb} key={file.name}>
+    //   //   <div style={thumbInner}>
+    //   //     <img
+    //   //       src={file.preview}
+    //   //       style={img}
+    //   //       // Revoke data uri after image is loaded
+    //   //       onLoad={() => { URL.revokeObjectURL(file.preview) }}
+    //   //     />
+    //   //   </div>
+    //   // </div>
+    // ));
+    // useEffect(() => {
+    //   // Make sure to revoke the data uris to avoid memory leaks, will run on unmount
+    //   return () => files.forEach(file => URL.revokeObjectURL(file.preview));
+    // }, []);
+    return /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("section", {
         className: "container",
-        children: [
-            /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                ...getRootProps({
-                    className: "dropzone"
-                }),
-                children: [
-                    /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("input", {
-                        ...getInputProps()
-                    }),
-                    /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("p", {
-                        children: "Drag 'n' drop some files here, or click to select files"
-                    })
-                ]
+        children: /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
+            ...getRootProps({
+                className: "dropzone"
             }),
-            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("aside", {
-                style: thumbsContainer,
-                children: thumbs
-            })
-        ]
+            children: [
+                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("input", {
+                    ...getInputProps()
+                }),
+                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("p", {
+                    children: "Drag 'n' drop some files here, or click to select files"
+                })
+            ]
+        })
     });
 }
 

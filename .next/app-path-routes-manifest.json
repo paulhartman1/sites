@@ -1,0 +1,17 @@
+{
+  "/favicon.ico/route": "/favicon.ico",
+  "/page": "/",
+  "/4/page": "/4",
+  "/[...galleryTitle]/page": "/[...galleryTitle]",
+  "/cal/route": "/cal",
+  "/events/page": "/events",
+  "/upload/page": "/upload",
+  "/components/artCard/page": "/components/artCard",
+  "/components/dropzone/page": "/components/dropzone",
+  "/components/layout/page": "/components/layout",
+  "/components/calendar/page": "/components/calendar",
+  "/components/event/page": "/components/event",
+  "/components/gallery/page": "/components/gallery",
+  "/components/nav/page": "/components/nav",
+  "/components/modals/calendar/page": "/components/modals/calendar"
+}

@@ -2,7 +2,7 @@ import React from 'react';
 import { Card, Col, Text } from '@nextui-org/react';
 export default function ArtCard(props: any) {
   return (
-  
+  <>
       <Card style={{ width: '200px' }}>
         <Card.Image
           src={props.image}
@@ -12,6 +12,6 @@ export default function ArtCard(props: any) {
           alt={props.title}
         />
       </Card>
-  
+  </>
   );
 }

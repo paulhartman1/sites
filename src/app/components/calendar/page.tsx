@@ -1,9 +1,6 @@
 import RC from "react-calendar"
 import 'react-calendar/dist/Calendar.css';
-interface CalendarProps {
-    onChange(date?:any): void;
-    date?: Date;
-}
+
 
 enum TileClasses {
     'BOOKED',
@@ -26,7 +23,7 @@ async function getCalendarData() {
     // const data = await res.json();
     // return data;
 }
-export default function Calendar(props:CalendarProps) {
+export default function Calendar(props:any) {
    
 
     return (

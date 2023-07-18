@@ -1,15 +1,15 @@
 import { Modal } from "@nextui-org/react";
 import React, {useState} from "react";
 import Calendar from '@/app/components/calendar/page';
-interface CalendarModalProps {
-    open: boolean;
-    onClose(): void;
-    onChange(date?:Date): void;
-    date?: Date;
-}
+// export interface CalendarModalProps {
+//     open: boolean;
+//     onClose(): void;
+//     onChange(date?:Date): void;
+//     date?: Date;
+// }
 
 
-export default function CalendarModal(props:CalendarModalProps) {
+export default function CalendarModal(props:any) {
     return(<Modal
         closeButton
         aria-labelledby="modal-title"

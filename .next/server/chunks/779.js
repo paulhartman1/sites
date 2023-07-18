@@ -64,6 +64,12 @@ function page_Calendar(props) {
 
 
 
+// export interface CalendarModalProps {
+//     open: boolean;
+//     onClose(): void;
+//     onChange(date?:Date): void;
+//     date?: Date;
+// }
 function CalendarModal(props) {
     return /*#__PURE__*/ jsx_runtime_.jsx(cjs.Modal, {
         closeButton: true,

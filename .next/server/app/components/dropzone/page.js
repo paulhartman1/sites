@@ -321,22 +321,17 @@ function Dropzone(props) {
     const style = (0,react_shared_subset.useMemo)(()=>({
             ...baseStyle
         }), []);
-    return /*#__PURE__*/ jsx_runtime_.jsx("div", {
+    return /*#__PURE__*/ (0,jsx_runtime_.jsxs)("div", {
         className: "container",
-        children: /*#__PURE__*/ (0,jsx_runtime_.jsxs)("div", {
-            ...getRootProps({
-                style
+        children: [
+            /*#__PURE__*/ jsx_runtime_.jsx("input", {
+                ...getInputProps(),
+                "data-testid": "imageInput"
             }),
-            children: [
-                /*#__PURE__*/ jsx_runtime_.jsx("input", {
-                    ...getInputProps(),
-                    "data-testid": "imageInput"
-                }),
-                /*#__PURE__*/ jsx_runtime_.jsx("p", {
-                    children: "Drag 'n' drop some files here, or click to select files"
-                })
-            ]
-        })
+            /*#__PURE__*/ jsx_runtime_.jsx("p", {
+                children: "Drag 'n' drop some files here, or click to select files"
+            })
+        ]
     });
 }
 

@@ -8,14 +8,14 @@ import CalendarModal from '../modals/calendar/page';
 export default function Nav() {
   
   const [showCalModal, setShowCalModal] = useState(false);
-  const [categories, setCategories] = useState([{0:'Face Painting'}, {1:'Bug Shows'}, {2:'Guitar Lessons'}, {3:'Art Projects'}, {4:'Performance Schedule'}]);
+  const [categories, setCategories] = useState<any>([{0:'Face Painting'}, {1:'Bug Shows'}, {2:'Guitar Lessons'}, {3:'Art Projects'}, {4:'Performance Schedule'}]);
 
-  const [collapseItems, setCollapseItems] = useState([]);
+  const [collapseItems, setCollapseItems] = useState<any[]>([]);
 
   const router = useRouter()
  
   useEffect(() => {
-    const items = categories.map((category, index) => {
+    const items = categories.map((category:any, index:number) => {
       return category[index];
     });
     setCollapseItems(items);
@@ -55,7 +55,7 @@ export default function Nav() {
       <Navbar.Content hideIn={'md'}>
        
         <Navbar.Link href="#" onClick={() => {setShowCalModal(true)}}>Book Me</Navbar.Link>
-        {categories.map((category, index) => {
+        {categories.map((category:any, index:number) => {
           return <Navbar.Link href={`/${index}`} key={index}>{category[index]}</Navbar.Link>
         })}
        
