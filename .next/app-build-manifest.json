@@ -17,6 +17,12 @@
       "static/chunks/main-app.js",
       "static/css/app/[...galleryTitle]/page.css",
       "static/chunks/app/[...galleryTitle]/page.js"
+    ],
+    "/4/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/css/app/4/page.css",
+      "static/chunks/app/4/page.js"
     ]
   }
 }

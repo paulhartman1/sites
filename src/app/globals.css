@@ -123,8 +123,6 @@ a {
 
 a:hover {
   color: #3000eeed;
-  
-  
 }
 
 .logo-text {
@@ -310,5 +308,8 @@ a:hover {
 
 }
 
+p {
+  line-height: 1.5;
+}
 
 

@@ -52,7 +52,7 @@ export default function Nav() {
             David G Hartman
           </Text>
         </Navbar.Brand>
-      <Navbar.Content hideIn={'md'}>
+      <Navbar.Content hideIn={'md'} >
        
         <Navbar.Link href="#" onClick={() => {setShowCalModal(true)}} >Book Me</Navbar.Link>
         {categories.map((category:any, index:number) => {
