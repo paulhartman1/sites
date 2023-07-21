@@ -256,6 +256,9 @@ a:hover {
 .banner-body {
   text-align: center;
   width: 95%;
+  max-height: 32rem;
+  overflow-y: scroll;
+  overflow-x: hidden;
 }
 
 .banner-body-title {
@@ -307,6 +310,8 @@ a:hover {
   text-transform: capitalize;
 
 }
+
+
 
 p {
   line-height: 1.5;
