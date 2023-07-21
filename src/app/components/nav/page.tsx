@@ -4,7 +4,6 @@ import { useRouter } from 'next/navigation';
 
 import { Navbar, Modal, Link, Avatar, Text, Dropdown } from '@nextui-org/react';
 import CalendarModal from '../modals/calendar/page';
-import LoginModal from '../modals/login/page';
 import { UserProvider, useUser } from '@auth0/nextjs-auth0/client';
 
 export default function Nav() {
@@ -149,11 +148,7 @@ export default function Nav() {
         onChange={calOnChangeHandler}
       />
 
-      <LoginModal
-        open={showLoginModal}
-        onClose={loginCloseHandler}
-        loginHandler={logInHandler}
-      />
+      
     </UserProvider>
   );
 }
