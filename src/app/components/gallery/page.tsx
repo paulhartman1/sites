@@ -2,6 +2,7 @@
 import { Grid } from '@nextui-org/react';
 import ArtCard from '../artCard/page';
 import { useEffect, useState } from 'react';
+import { UserProvider } from '@auth0/nextjs-auth0/client';
 export default function Gallery(props: any) {
   const [images, setImages] = useState(props.images);
 
@@ -13,6 +14,7 @@ export default function Gallery(props: any) {
 
 
   return (
+    <UserProvider>
     <Grid.Container gap={2}>
       {images?.map(
         (image: any) =>
@@ -23,5 +25,6 @@ export default function Gallery(props: any) {
           )
       )}
     </Grid.Container>
+    </UserProvider>
   );
 }

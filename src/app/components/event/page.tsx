@@ -1,4 +1,5 @@
 'use client';
+import { UserProvider } from '@auth0/nextjs-auth0/client';
 import { Grid, Text } from '@nextui-org/react';
 import { useEffect, useState } from 'react';
 
@@ -18,7 +19,7 @@ export default function Event(props: any) {
     setDescription(props.event.description );
   }, [props]);
   return (
-    <>
+    <UserProvider>
       <Grid.Container gap={4} css={{ padding: 0, margin: 0, height: 100 }}>
         <Grid xs={2} style={{ textAlign: 'center' }}>
           <Text
@@ -75,6 +76,6 @@ export default function Event(props: any) {
           </Grid.Container>
         </Grid>
       </Grid.Container>
-    </>
+    </UserProvider>
   );
 }

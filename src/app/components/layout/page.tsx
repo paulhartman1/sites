@@ -3,6 +3,7 @@
 import { Image, Grid, Button } from '@nextui-org/react';
 import { useEffect, useState } from 'react';
 import LandingText from '../../../../public/landingText';
+import { UserProvider } from '@auth0/nextjs-auth0/client';
 
 export default function Layout(props: any) {
   const [bannerImage, setBannerImage] = useState(
@@ -18,6 +19,7 @@ export default function Layout(props: any) {
   }, [props]);
 
   return (
+    <UserProvider>
     <Grid.Container gap={2} style={{ marginTop: '50px' }}>
       <Grid xs={0} sm={3} style={{ marginTop: '35px' }}>
         <Image
@@ -39,5 +41,6 @@ export default function Layout(props: any) {
         </Grid>
       </Grid.Container>
     </Grid.Container>
+    </UserProvider>
   );
 }

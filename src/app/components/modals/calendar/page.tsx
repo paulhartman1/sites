@@ -2,6 +2,7 @@
 import { Modal } from "@nextui-org/react";
 import React, {useState} from "react";
 import Calendar from '@/app/components/calendar/page';
+import { UserProvider } from "@auth0/nextjs-auth0/client";
 // export interface CalendarModalProps {
 //     open: boolean;
 //     onClose(): void;
@@ -11,7 +12,9 @@ import Calendar from '@/app/components/calendar/page';
 
 
 export default function CalendarModal(props:any) {
-    return(<Modal
+    return(
+      <UserProvider>
+    <Modal
         closeButton
         aria-labelledby="modal-title"
         open={props.open}
@@ -20,5 +23,7 @@ export default function CalendarModal(props:any) {
         <Modal.Body>
           <Calendar onChange={props.onChange} date={props.date}/>
         </Modal.Body>
-        </Modal>);
+        </Modal>
+        </UserProvider>
+        );
 }

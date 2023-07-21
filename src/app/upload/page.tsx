@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { Card, Image } from '@nextui-org/react';
 import Dropzone from '../components/dropzone/page';
 import {useDropzone} from 'react-dropzone';
+import { UserProvider } from '@auth0/nextjs-auth0/client';
 
 const thumbsContainer = {
   display: 'flex',
@@ -66,6 +67,7 @@ export default function Upload(props:any) {
   // }, []);
 
   return (
+    <UserProvider>
     <section className="container">
       <div {...getRootProps({className: 'dropzone'})}>
         <input {...getInputProps()} />
@@ -75,5 +77,6 @@ export default function Upload(props:any) {
         {thumbs}
       </aside> */}
     </section>
+    </UserProvider>
   );
 }

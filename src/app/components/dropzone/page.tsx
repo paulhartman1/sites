@@ -3,6 +3,7 @@
 import React, {useMemo} from 'react';
 import {useDropzone} from 'react-dropzone';
 import {baseStyle, focusedStyle, acceptStyle, rejectStyle} from './style.ts'
+import { UserProvider } from '@auth0/nextjs-auth0/client';
 
 export default function Dropzone(props:any) {
     const {
@@ -21,11 +22,13 @@ export default function Dropzone(props:any) {
       }), []);
 
       return (
+        <UserProvider>
         <div className="container">
         
             <input {...getInputProps()}  data-testid="imageInput" />
             <p>Drag 'n' drop some files here, or click to select files</p>
         
         </div>
+        </UserProvider>
       );
 }
