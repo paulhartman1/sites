@@ -3,11 +3,11 @@ import Layout from '../../app/components/layout/page';
 import Event from '../components/event/page';
 import { UserProvider } from '@auth0/nextjs-auth0/client';
 import { Event as EventType } from '../components/event/types';
-import { calendar_v3, google } from 'googleapis';
+import { google } from 'googleapis';
 
 
 
-export const getEvents = async () => {
+const getEvents = async () => {
   const auth = new google.auth.GoogleAuth({
     credentials:{
       client_email: process.env.GOOGLE_CALENDAR_CLIENT_EMAIL,
