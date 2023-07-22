@@ -14,7 +14,7 @@ export default function Event(props: any) {
   useEffect(() => {
     setDate(props.event.date );
     setTitle(props.event.title );
-    setLocation(props.event.location || 'Longmont');
+    setLocation(props.event.location);
     setTime(props.event.time );
     setDescription(props.event.description );
   }, [props]);
