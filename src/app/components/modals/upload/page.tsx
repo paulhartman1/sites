@@ -5,10 +5,9 @@ import React, { useEffect, useState } from 'react';
 import { UserProvider } from '@auth0/nextjs-auth0/client';
 import Dropzone from '../../dropzone/page.tsx';
 import categories from '../../../../../public/cats.json';
-import { v4 as randomUUID } from 'uuid';
 
 export default function UploadModal(props: any) {
-  const [files, setFiles] = useState<any>();
+  const [files, setFiles] = useState<any>([]);
   const [images, setImages] = useState([]);
   const [menuItems, setMenuItems] = useState(categories);
  
@@ -35,7 +34,6 @@ export default function UploadModal(props: any) {
     files.forEach((file: { originalname: any; buffer: any; }) => {
         const { originalname, buffer } = file;
        
-       console.log(buffer);
         fetch('api/upload', {
             method: 'POST',
             body: buffer,
