@@ -19,7 +19,6 @@ const thumb = {
   width: 100,
   height: 100,
   padding: 4,
-  boxSizing: 'border-box',
 };
 
 const thumbInner = {
@@ -47,7 +46,7 @@ export default function Dropzone(props:any) {
       <div style={thumbInner}>
         <Image
           src={file.preview}
-          style={img}
+          style={thumb}
           // Revoke data uri after image is loaded
           onLoad={() => {
             URL.revokeObjectURL(file.preview);
@@ -65,7 +64,7 @@ export default function Dropzone(props:any) {
         <input {...getInputProps()} />
         {<Text>Drop <span style={{fontWeight:'lighter'}}>(or)</span> click me!</Text>}
       </div>
-      <aside>{thumbs}</aside>
+      <aside >{thumbs}</aside>
     </section>
   );
 }
