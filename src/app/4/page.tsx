@@ -8,8 +8,8 @@ import { google } from 'googleapis';
 const getEvents = async () => {
   const auth = new google.auth.GoogleAuth({
     credentials: {
-      client_email: process.env.GOOGLE_CALENDAR_CLIENT_EMAIL,
-      private_key: process.env.GOOGLE_CALENDAR_PRIVATE_KEY,
+      client_email: process.env.GOOGLE_CLOUD_CLIENT_EMAIL,
+      private_key: process.env.GOOGLE_CLOUD_PRIVATE_KEY,
     },
     scopes: [
       // set the right scope
