@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { useDropzone } from 'react-dropzone';
 import { Image, Text } from '@nextui-org/react';
 
@@ -42,7 +42,7 @@ export default function Dropzone(props:any) {
   });
 
   const thumbs = props.files?.map((file:any) => (
-    <div style={thumb} key={file.name}>
+    <div key={file.name}>
       <div style={thumbInner}>
         <Image
           src={file.preview}
@@ -64,7 +64,7 @@ export default function Dropzone(props:any) {
         <input {...getInputProps()} />
         {<Text>Drop <span style={{fontWeight:'lighter'}}>(or)</span> click me!</Text>}
       </div>
-      <aside style={thumbsContainer}>{thumbs}</aside>
+      <aside>{thumbs}</aside>
     </section>
   );
 }
