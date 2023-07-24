@@ -8,7 +8,7 @@ import categories from '../../../../../public/cats.json';
 import { v4 as randomUUID } from 'uuid';
 
 export default function UploadModal(props: any) {
-  const [files, setFiles] = useState([]);
+  const [files, setFiles] = useState<any>();
   const [images, setImages] = useState([]);
   const [menuItems, setMenuItems] = useState(categories);
  
@@ -32,8 +32,7 @@ export default function UploadModal(props: any) {
 
   useEffect(() => {
 
-    files.forEach((file) => {
-        console.log("AWDRARAEREWARWERAEWREWAREWRAEWREWAREWAR");
+    files.forEach((file: { originalname: any; buffer: any; }) => {
         const { originalname, buffer } = file;
        
        console.log(buffer);
