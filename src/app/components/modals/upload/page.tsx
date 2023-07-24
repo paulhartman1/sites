@@ -71,7 +71,7 @@ export default function UploadModal(props: any) {
                     Select a category - or don't
                   </Dropdown.Button>
                   <Dropdown.Menu aria-label="Dynamic Actions" items={menuItems}>
-                    {(item) => (
+                    {(item:any) => (
                       <Dropdown.Item
                         key={item.key}
                         color={item.key === 'delete' ? 'error' : 'default'}
