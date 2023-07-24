@@ -1,0 +1,32 @@
+[
+    {
+        "id": "0",
+        "name": "Face Painting",
+        "parent": null
+    },
+    {
+        "id": "1",
+        "name": "Fine Art",
+        "parent": null
+    },
+    {
+        "id": "2",
+        "name": "Colored Pencil",
+        "parent": "1"
+    },
+    {
+        "id": "3",
+        "name": "Oil Painting",
+        "parent": "1"
+    },
+    {
+        "id": "4",
+        "name": "Photography",
+        "parent": "1"
+    },
+    {
+        "id": "5",
+        "name": "Nature Photography",
+        "parent": "4"
+    }
+]

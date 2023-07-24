@@ -1,14 +1,15 @@
 'use client';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, use } from 'react';
 import { useRouter } from 'next/navigation';
 
 import { Navbar, Modal, Link, Avatar, Text, Dropdown } from '@nextui-org/react';
 import CalendarModal from '../modals/calendar/page';
+import UploadModal from '../modals/upload/page';
 import { UserProvider, useUser } from '@auth0/nextjs-auth0/client';
 
 export default function Nav() {
   const [showCalModal, setShowCalModal] = useState(false);
-  const [showLoginModal, setShowLoginModal] = useState(false);
+  const [showUploadModal, setShowUploadModal] = useState(false);
   const [categories, setCategories] = useState<any>([
     { 0: 'Face Painting' },
     { 1: 'Bug Shows' },
@@ -16,6 +17,13 @@ export default function Nav() {
     { 3: 'Art Projects' },
     { 4: 'Performance Schedule' },
   ]);
+
+  const [selected, setSelected] = useState(new Set(["text"]));
+
+  const selectedValue = React.useMemo(
+    () => Array.from(selected).join(', ').replaceAll('_', ' '),
+    [selected]
+  );
 
   const [collapseItems, setCollapseItems] = useState<any[]>([]);
 
@@ -28,16 +36,21 @@ export default function Nav() {
     setCollapseItems(items);
   }, [categories]);
 
+  useEffect(() => {
+    
+    if(selected.entries().next().value[0] == 'upload' && user?.email === 'dave@davidghartman.com'){
+      setShowUploadModal(true);
+      setSelected(new Set(["text"]));
+    }
+  }, [selected]);
+
+  const handleProfileMenuSelection = (e: any) => {
+    setSelected(e);
+    console.log(selected);
+  };
+
   const calCloseHandler = () => {
     setShowCalModal(false);
-  };
-
-  const loginCloseHandler = () => {
-    setShowLoginModal(false);
-  };
-
-  const logInHandler = () => {
-    alert('Log In');
   };
 
   const calOnChangeHandler = (e: unknown) => {
@@ -48,20 +61,12 @@ export default function Nav() {
   }
 
   const { user, isLoading } = useUser();
-
   return (
     <UserProvider>
       <Navbar isBordered variant="floating">
         <Navbar.Toggle showIn={'md'} />
         <Navbar.Brand>
-          {/* <Image
-                src="/artistProfile.png"
-                alt="NextUI"
-                width="112px"
-                height="28px"
-                className='logo'
-            >
-            </Image> */}
+         
           <Text b color="inherit" className="logo-text" onClick={handleClick}>
             David G Hartman
           </Text>
@@ -101,20 +106,48 @@ export default function Nav() {
           </Navbar.Item> */}
 
           {
-            <Avatar
-              bordered
-              as="button"
-              color="primary"
-              size="md"
-              src={user?.picture || undefined}
-              onClick={() => {
-                if(user?.name) {
-                  console.log(user);
-                } else {
-                  console.log('no user');
-                }
-              }}
-            />
+            <Dropdown placement="bottom-right">
+              <Dropdown.Trigger>
+                <Avatar
+                  bordered
+                  as="button"
+                  color="primary"
+                  size="md"
+                  src={user?.picture || undefined}
+                />
+              </Dropdown.Trigger>
+              <Dropdown.Menu
+                color="secondary"
+                selectionMode="single"
+                selectedKeys={selected}
+                onSelectionChange={handleProfileMenuSelection}
+              >
+                <Dropdown.Item key="profile" css={{ height: '$18' }}>
+                 
+                  <Text b color="inherit" css={{ d: 'flex' }}>
+                    {user?.name || 'Guest'}
+                  </Text>
+                </Dropdown.Item>
+                <Dropdown.Item key="settings" withDivider>
+                  My Settings
+                </Dropdown.Item>
+                
+                <Dropdown.Item key="upload" withDivider>
+                  Upload
+                </Dropdown.Item>
+                <Dropdown.Item key="system">Library</Dropdown.Item>
+                
+                <Dropdown.Item key="configurations">
+                  Configurations
+                </Dropdown.Item>
+                <Dropdown.Item key="help_and_feedback" withDivider>
+                  Help & Feedback
+                </Dropdown.Item>
+                <Dropdown.Item key="logout" withDivider color="error">
+                  Log Out
+                </Dropdown.Item>
+              </Dropdown.Menu>
+            </Dropdown>
           }
         </Navbar.Content>
 
@@ -147,8 +180,12 @@ export default function Nav() {
         onClose={calCloseHandler}
         onChange={calOnChangeHandler}
       />
-
-      
+      <UploadModal 
+        open={showUploadModal}
+        onClose={() => setShowUploadModal(false)}
+        env={process.env}
+       
+      />
     </UserProvider>
   );
 }
