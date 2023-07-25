@@ -18,7 +18,7 @@ export default function Nav() {
     { 4: 'Performance Schedule' },
   ]);
 
-  const [selected, setSelected] = useState(new Set(["text"]));
+  const [selected, setSelected] = useState(new Set(['text']));
 
   const selectedValue = React.useMemo(
     () => Array.from(selected).join(', ').replaceAll('_', ' '),
@@ -37,11 +37,41 @@ export default function Nav() {
   }, [categories]);
 
   useEffect(() => {
-    
-    if(selected.entries().next().value[0] == 'upload' && user?.email === 'dave@davidghartman.com'){
-      setShowUploadModal(true);
-      setSelected(new Set(["text"]));
+    console.log(selected);
+    switch (selected.entries().next().value[0]) {
+      case 'profile':
+        router.push('/profile');
+        break;
+      case 'settings':
+        router.push('/settings');
+        break;
+      case 'upload':
+        if (!user?.email) router.push('/api/auth/login');
+        else if (user?.email == 'dave@davidghartman.com') setShowUploadModal(true);
+        break;
+      case 'library':
+        router.push('/library');
+        break;
+      case 'configurations':
+        router.push('/configurations');
+        break;
+      case 'help_and_feedback':
+        router.push('/help_and_feedback');
+        break;
+      case 'logout':
+        router.push('/api/auth/logout');
+        break;
+      default:
+        break;
     }
+
+    // if (
+    //   selected.entries().next().value[0] == 'upload' &&
+    //   user?.email === 'dave@davidghartman.com'
+    // ) {
+    //   setShowUploadModal(true);
+    //   setSelected(new Set(['text']));
+    // }
   }, [selected]);
 
   const handleProfileMenuSelection = (e: any) => {
@@ -66,7 +96,6 @@ export default function Nav() {
       <Navbar isBordered variant="floating">
         <Navbar.Toggle showIn={'md'} />
         <Navbar.Brand>
-         
           <Text b color="inherit" className="logo-text" onClick={handleClick}>
             David G Hartman
           </Text>
@@ -123,7 +152,6 @@ export default function Nav() {
                 onSelectionChange={handleProfileMenuSelection}
               >
                 <Dropdown.Item key="profile" css={{ height: '$18' }}>
-                 
                   <Text b color="inherit" css={{ d: 'flex' }}>
                     {user?.name || 'Guest'}
                   </Text>
@@ -131,12 +159,12 @@ export default function Nav() {
                 <Dropdown.Item key="settings" withDivider>
                   My Settings
                 </Dropdown.Item>
-                
+
                 <Dropdown.Item key="upload" withDivider>
                   Upload
                 </Dropdown.Item>
-                <Dropdown.Item key="system">Library</Dropdown.Item>
-                
+                <Dropdown.Item key="library">Library</Dropdown.Item>
+
                 <Dropdown.Item key="configurations">
                   Configurations
                 </Dropdown.Item>
@@ -180,11 +208,10 @@ export default function Nav() {
         onClose={calCloseHandler}
         onChange={calOnChangeHandler}
       />
-      <UploadModal 
+      <UploadModal
         open={showUploadModal}
         onClose={() => setShowUploadModal(false)}
         env={process.env}
-       
       />
     </UserProvider>
   );

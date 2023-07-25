@@ -49,7 +49,7 @@ export default function Dropzone(props:any) {
           style={thumb}
           // Revoke data uri after image is loaded
           onLoad={() => {
-            URL.revokeObjectURL(file.preview);
+            //URL.revokeObjectURL(file.preview);
           }}
         />
       </div>

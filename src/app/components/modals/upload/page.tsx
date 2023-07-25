@@ -1,4 +1,3 @@
-
 'use client';
 import { Grid, Dropdown, Modal } from '@nextui-org/react';
 import React, { useEffect, useState } from 'react';
@@ -10,15 +9,15 @@ export default function UploadModal(props: any) {
   const [files, setFiles] = useState<any>([]);
   const [images, setImages] = useState([]);
   const [menuItems, setMenuItems] = useState(categories);
- 
 
-  const handleUpload = (acceptedFiles: {
-    map: (
-      arg0: (
-        file: Blob | MediaSource
-      ) => (Blob | MediaSource) & { preview: string }
-    ) => React.SetStateAction<never[]>;
-  }) => {
+  const onDrop = (acceptedFiles: any) => {
+    console.log(acceptedFiles);
+    acceptedFiles.forEach((file: any) => {
+     
+    });
+  };
+
+  const handleUpload = (acceptedFiles: any) => {
     setImages(
       acceptedFiles.map((file: Blob | MediaSource) =>
         Object.assign(file, {
@@ -27,19 +26,26 @@ export default function UploadModal(props: any) {
       )
     );
     setFiles(acceptedFiles);
+    acceptedFiles.forEach((file: any) => {
+      let formData = new FormData();
+      formData.append('file', file.buffer);
+      fetch(`api/upload?name=${file.name}&path=${file.preview}`, {
+        method: 'POST',
+        body: formData,
+      });
+    });
   };
 
-  useEffect(() => {
-
-    files.forEach((file: { originalname: any; buffer: any; }) => {
-        const { originalname, buffer } = file;
-       
-        fetch('api/upload', {
-            method: 'POST',
-            body: buffer,
-        });
-    });
-  }, [files]);
+  // useEffect(() => {
+  //   files.forEach((file: any) => {
+  //     const { name, buffer } = file;
+  //     console.log(file);
+  //     fetch(`api/upload?name=${name}&path=${file.preview}`, {
+  //       method: 'POST',
+  //       body: file,
+  //     });
+  //   });
+  // }, [files]);
 
   const handleClose = () => {
     props.onClose();
@@ -69,7 +75,7 @@ export default function UploadModal(props: any) {
                     Select a category - or don't
                   </Dropdown.Button>
                   <Dropdown.Menu aria-label="Dynamic Actions" items={menuItems}>
-                    {(item:any) => (
+                    {(item: any) => (
                       <Dropdown.Item
                         key={item.key}
                         color={item.key === 'delete' ? 'error' : 'default'}
