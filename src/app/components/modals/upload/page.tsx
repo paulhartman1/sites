@@ -4,20 +4,31 @@ import React, { useEffect, useState } from 'react';
 import { UserProvider } from '@auth0/nextjs-auth0/client';
 import Dropzone from '../../dropzone/page.tsx';
 import categories from '../../../../../public/cats.json';
+import storage from '@/lib/firebaseConfig';
+import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
+import { v4 as uuidv4 } from 'uuid';
 
 export default function UploadModal(props: any) {
   const [files, setFiles] = useState<any>([]);
   const [images, setImages] = useState([]);
   const [menuItems, setMenuItems] = useState(categories);
 
-  const onDrop = (acceptedFiles: any) => {
-    console.log(acceptedFiles);
-    acceptedFiles.forEach((file: any) => {
-     
+  const testUploadFirebase = async (acceptedFiles: any) => {
+    const fileExt = acceptedFiles[0].name.split('.').pop();
+    const fileName = uuidv4();
+    const storageRef = ref(storage,  `${fileName}.${fileExt}`);
+    uploadBytes(storageRef, acceptedFiles[0]).then((snapshot) => {
+      console.log('Uploaded a blob or file!');
+    }).catch((error) => {
+      console.log(error);
     });
-  };
 
-  const handleUpload = (acceptedFiles: any) => {
+    console.log('posting vercel');
+    fetch(`api/upload?name=${fileName}&type=${fileExt}`, {
+      method: 'POST',
+      body: acceptedFiles[0],
+    });
+
     setImages(
       acceptedFiles.map((file: Blob | MediaSource) =>
         Object.assign(file, {
@@ -25,27 +36,7 @@ export default function UploadModal(props: any) {
         })
       )
     );
-    setFiles(acceptedFiles);
-    acceptedFiles.forEach((file: any) => {
-      let formData = new FormData();
-      formData.append('file', file.buffer);
-      fetch(`api/upload?name=${file.name}&path=${file.preview}`, {
-        method: 'POST',
-        body: formData,
-      });
-    });
   };
-
-  // useEffect(() => {
-  //   files.forEach((file: any) => {
-  //     const { name, buffer } = file;
-  //     console.log(file);
-  //     fetch(`api/upload?name=${name}&path=${file.preview}`, {
-  //       method: 'POST',
-  //       body: file,
-  //     });
-  //   });
-  // }, [files]);
 
   const handleClose = () => {
     props.onClose();
@@ -66,7 +57,7 @@ export default function UploadModal(props: any) {
         <Modal.Body>
           <Grid.Container gap={2} justify="center">
             <Grid xs={12} md={6}>
-              <Dropzone onDrop={handleUpload} files={images} />
+              <Dropzone onDrop={testUploadFirebase} files={images} />
             </Grid>
             <Grid xs={12} md={6}>
               {files.length > 0 && (
