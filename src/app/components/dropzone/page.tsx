@@ -36,7 +36,7 @@ const img = {
 export default function Dropzone(props:any) {
   const { getRootProps, getInputProps } = useDropzone({
     accept: {
-      '*/*': [],
+      'image/*': [],
     },
     onDrop: props.onDrop
   });

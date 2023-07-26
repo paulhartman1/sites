@@ -9,7 +9,11 @@ async function uploadFileData(
 ) {
   //write to vercel postrgres, image table, just the id
   await sql`INSERT INTO images (id, type) VALUES (${fileName}, ${fileType})`;
-  await sql`INSERT INTO imagecategory (imageid) VALUES (${fileName})`;
+
+  if(categoryid === 'null' || categoryid === undefined) categoryid = null;
+
+    await sql`INSERT INTO imagecategory (imageid, categoryid) VALUES (${fileName}, ${categoryid})`
+ 
 }
 
 export default async function upload(
@@ -21,8 +25,8 @@ export default async function upload(
     case 'POST':
       await uploadFileData(
         req.query.name as string,
-        req.query.type as string
-        
+        req.query.type as string,
+        req.query.categoryid as string || null
       );
       break;
     default:

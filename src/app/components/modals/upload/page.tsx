@@ -24,7 +24,7 @@ export default function UploadModal(props: any) {
     });
 
     console.log('posting vercel');
-    fetch(`api/upload?name=${fileName}&type=${fileExt}`, {
+    fetch(`api/upload?name=${fileName}&type=${fileExt}&categoryid=1`, {
       method: 'POST',
       body: acceptedFiles[0],
     });
