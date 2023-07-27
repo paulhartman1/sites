@@ -1,6 +1,5 @@
 import React from 'react';
 export default function FilePreview(props: any) {
-    console.log('props');
   const fileData = props.fileData;
   return (
     fileData?.fileList?.length > 0 &&
@@ -8,7 +7,7 @@ export default function FilePreview(props: any) {
       <div className={'fileContainer'}>
         {/* loop over the fileData */}
         {fileData.fileList.map((f: { lastModified: React.Key | null | undefined; name: boolean | React.Key | React.ReactElement<any, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | React.PromiseLikeOfReactNode | null | undefined; }) => {
-            console.log(f);
+         
           return (
             <>
               <ol>

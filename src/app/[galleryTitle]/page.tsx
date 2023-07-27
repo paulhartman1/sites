@@ -49,7 +49,7 @@ export default function Gallery() {
       <Nav />
       <Layout
         bannerImage={bannerImage}
-        bodyData={<ImageGallery catId={catId} images={images} />}
+        bodyData={<ImageGallery catId={catId} images={images} isPressable={false}/>}
       />
     </UserProvider>
   );

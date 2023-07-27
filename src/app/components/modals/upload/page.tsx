@@ -1,24 +1,47 @@
-
 'use client';
-import { Grid, Dropdown, Modal } from '@nextui-org/react';
-import React, { useEffect, useState } from 'react';
+import { Grid, Dropdown, Modal, Text, Button } from '@nextui-org/react';
+import React, { useEffect, useInsertionEffect, useState } from 'react';
 import { UserProvider } from '@auth0/nextjs-auth0/client';
 import Dropzone from '../../dropzone/page.tsx';
-import categories from '../../../../../public/cats.json';
+import storage from '@/lib/firebaseConfig';
+import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
+import { v4 as uuidv4 } from 'uuid';
 
 export default function UploadModal(props: any) {
   const [files, setFiles] = useState<any>([]);
   const [images, setImages] = useState([]);
-  const [menuItems, setMenuItems] = useState(categories);
- 
+  const [menuItems, setMenuItems] = useState([]);
+  const [downloadURL, setDownloadURL] = useState('');
+  const [dropdownText, setDropdownText] = useState('Select a category');
+  const [catId, setCatId] = useState(-1);
+  const [selected, setSelected] = useState<any>('');
 
-  const handleUpload = (acceptedFiles: {
-    map: (
-      arg0: (
-        file: Blob | MediaSource
-      ) => (Blob | MediaSource) & { preview: string }
-    ) => React.SetStateAction<never[]>;
-  }) => {
+  const handleUpload = async () => {
+    files.forEach((file: any) => {
+      const fileExt = file.name.split('.').pop();
+      const fileName = uuidv4();
+      const storageRef = ref(storage, `${fileName}.${fileExt}`);
+      uploadBytes(storageRef, file)
+        .then((snapshot) => {
+          getDownloadURL(snapshot.ref).then((downloadURL) => {
+            setDownloadURL(downloadURL);
+            fetch(
+              `api/upload?name=${fileName}&type=${fileExt}&categoryid=${catId}&url=${downloadURL}`,
+              {
+                method: 'POST',
+                body: file,
+              }
+            );
+          });
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    });
+  };
+
+  const testUploadFirebase = async (acceptedFiles: any) => {
+    setFiles(acceptedFiles);
     setImages(
       acceptedFiles.map((file: Blob | MediaSource) =>
         Object.assign(file, {
@@ -26,26 +49,27 @@ export default function UploadModal(props: any) {
         })
       )
     );
-    setFiles(acceptedFiles);
   };
-
-  useEffect(() => {
-
-    files.forEach((file: { originalname: any; buffer: any; }) => {
-        const { originalname, buffer } = file;
-       
-        fetch('api/upload', {
-            method: 'POST',
-            body: buffer,
-        });
-    });
-  }, [files]);
 
   const handleClose = () => {
     props.onClose();
     setFiles([]);
     setImages([]);
   };
+
+  const handleSelectionChange = (e: any) => {
+    setSelected(e);
+    setCatId(e.currentKey);
+    setDropdownText((menuItems[e.currentKey] as any).name);
+  };
+
+  useEffect(() => {
+    fetch('/category')
+      .then((res) => res.json())
+      .then((data) => {
+        setMenuItems(data);
+      });
+  }, [menuItems.length]);
 
   return (
     <UserProvider>
@@ -60,29 +84,40 @@ export default function UploadModal(props: any) {
         <Modal.Body>
           <Grid.Container gap={2} justify="center">
             <Grid xs={12} md={6}>
-              <Dropzone onDrop={handleUpload} files={images} />
+              <Dropzone onDrop={testUploadFirebase} files={images} />
             </Grid>
             <Grid xs={12} md={6}>
-              {files.length > 0 && (
-                <Dropdown>
-                  <Dropdown.Button flat>
-                    Select a category - or don't
-                  </Dropdown.Button>
-                  <Dropdown.Menu aria-label="Dynamic Actions" items={menuItems}>
-                    {(item:any) => (
-                      <Dropdown.Item
-                        key={item.key}
-                        color={item.key === 'delete' ? 'error' : 'default'}
-                      >
-                        {item.name}
-                      </Dropdown.Item>
-                    )}
-                  </Dropdown.Menu>
-                </Dropdown>
-              )}
+              <Dropdown>
+                <Dropdown.Button flat css={{ tt: 'capitalize' }}>
+                  {dropdownText}{' '}
+                </Dropdown.Button>
+                <Dropdown.Menu
+                  items={menuItems}
+                  selectionMode="single"
+                  selectedKeys={selected}
+                  onSelectionChange={handleSelectionChange}
+                >
+                  {(item: any) => (
+                    <Dropdown.Item
+                      key={item.key}
+                      color={item.key === 'delete' ? 'error' : 'default'}
+                      css={{ tt: 'capitalize' }}
+                    >
+                      {item.name}
+                    </Dropdown.Item>
+                  )}
+                </Dropdown.Menu>
+              </Dropdown>
             </Grid>
           </Grid.Container>
         </Modal.Body>
+        <Modal.Footer>
+          {files.length > 0 && catId > -1 && (
+            <Button auto onClick={handleUpload}>
+              Upload
+            </Button>
+          )}
+        </Modal.Footer>
       </Modal>
     </UserProvider>
   );

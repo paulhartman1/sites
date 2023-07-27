@@ -1,54 +1,20 @@
 import { NextApiRequest, NextApiResponse } from 'next';
-import { v4 as randomUUID } from 'uuid';
-import { Storage } from '@google-cloud/storage';
+
 import { sql } from '@vercel/postgres';
-const storage = new Storage({
-  projectId: process.env.GOOGLE_CLOUD_PROJECT_ID,
-  credentials: {
-    client_email: process.env.GOOGLE_CLOUD_CLIENT_EMAIL,
-    private_key: process.env.GOOGLE_CLOUD_PRIVATE_KEY,
-  },
-});
-const fileName = randomUUID();
-async function uploadFile(req: NextApiRequest, res: NextApiResponse) {
-  try {
-    const { buffer } = req.body;
 
-    const bucket = storage.bucket(
-      process.env.GOOGLE_CLOUD_STORAGE_BUCKET || 'nextui'
-    );
-
-    const blob = bucket.file(fileName);
-
-    const blobStream = blob.createWriteStream({
-      resumable: false,
-    });
-
-    blobStream.on('error', (err) => {
-      console.log(err);
-    });
-
-    blobStream
-      .on('finish', () => {
-        const publicUrl = `https://storage.googleapis.com/${bucket.name}/${blob.name}`;
-        console.log(publicUrl);
-      })
-      .on('error', (err) => {
-        console.log(err);
-      });
-
-    blobStream.end(buffer);
-
-    res.status(200).json({ message: 'success' });
-  } catch (error) {
-    res.status(500).json({ message: 'error' });
-  }
-}
-
-async function uploadFileData() {
+async function uploadFileData(
+  fileName: string,
+  fileType: string,
+  url: string,
+  categoryid?: string | null
+) {
   //write to vercel postrgres, image table, just the id
+  await sql`INSERT INTO images (id, type, url) VALUES (${fileName}, ${fileType}, ${url})`;
 
-  await sql`INSERT INTO images (id) VALUES (${fileName})`;
+  if(categoryid === 'null' || categoryid === undefined) categoryid = null;
+
+    await sql`INSERT INTO imagecategory (imageid, categoryid) VALUES (${fileName}, ${categoryid})`
+ 
 }
 
 export default async function upload(
@@ -58,8 +24,12 @@ export default async function upload(
   const { method } = req;
   switch (method) {
     case 'POST':
-      await uploadFile(req, res);
-      await uploadFileData();
+      await uploadFileData(
+        req.query.name as string,
+        req.query.type as string,
+        req.query.url as string,
+        req.query.categoryid as string || null
+      );
       break;
     default:
       res.setHeader('Allow', ['POST']);
