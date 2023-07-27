@@ -15,16 +15,17 @@ export default function Gallery(props: any) {
 
   return (
     <UserProvider>
-    <Grid.Container gap={2}>
+    <Grid.Container gap={2} className="art-cards-container">
       {images?.map(
         (image: any) =>
            (
             <Grid xs={12} sm={3} key={image.id}>
-              <ArtCard title={image.name} image={image.url} />
+              <ArtCard title={image.name} image={image.url} isPressable={props.isPressable || false} display={image.display}/>
             </Grid>
           )
       )}
     </Grid.Container>
+
     </UserProvider>
   );
 }

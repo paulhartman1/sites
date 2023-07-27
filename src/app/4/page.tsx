@@ -42,7 +42,7 @@ const getEvents = async () => {
     });
   });
   rtn = rtn.filter((event) => {
-    return event.title.toLowerCase() != 'out of office';
+    return new Date(event.date) >= new Date() && event.title.toLowerCase() != 'out of office';
   });
 
   return rtn.sort((a, b) => {

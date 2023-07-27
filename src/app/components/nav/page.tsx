@@ -37,7 +37,7 @@ export default function Nav() {
   }, [categories]);
 
   useEffect(() => {
-    console.log(selected);
+
     switch (selected.entries().next().value[0]) {
       case 'profile':
         router.push('/profile');
@@ -50,6 +50,7 @@ export default function Nav() {
         else if (user?.email == 'dave@davidghartman.com') setShowUploadModal(true);
         break;
       case 'library':
+        if (!user?.email) router.push('/api/auth/login');
         router.push('/library');
         break;
       case 'configurations':
@@ -76,7 +77,7 @@ export default function Nav() {
 
   const handleProfileMenuSelection = (e: any) => {
     setSelected(e);
-    console.log(selected);
+
   };
 
   const calCloseHandler = () => {
@@ -160,6 +161,8 @@ export default function Nav() {
                   My Settings
                 </Dropdown.Item>
 
+                
+ 
                 <Dropdown.Item key="upload" withDivider>
                   Upload
                 </Dropdown.Item>

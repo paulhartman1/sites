@@ -4,8 +4,16 @@ import { Card, Col, Text } from '@nextui-org/react';
 import { UserProvider } from '@auth0/nextjs-auth0/client';
 export default function ArtCard(props: any) {
   return (
-  <UserProvider>
-      <Card style={{ width: '200px' }}>
+    <UserProvider>
+      <Card
+        css={{ width: '200px', display: `${props.display}` }}
+        onPress={
+          props.isPressable
+            ? () => window.open(props.image, '_blank')
+            : () => {}
+        }
+        isPressable={props.isPressable || true}
+      >
         <Card.Image
           src={props.image}
           objectFit="cover"
@@ -14,6 +22,6 @@ export default function ArtCard(props: any) {
           alt={props.title}
         />
       </Card>
-  </UserProvider>
+    </UserProvider>
   );
 }
