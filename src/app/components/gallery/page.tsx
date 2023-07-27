@@ -20,7 +20,7 @@ export default function Gallery(props: any) {
         (image: any) =>
            (
             <Grid xs={12} sm={3} key={image.id}>
-              <ArtCard title={image.name} image={image.url} isPressable={props.isPressable || false} display={image.display}/>
+              <ArtCard imageId={image.id} title={image.name} image={image.url} isPressable={props.isPressable || false} display={image.display} showBorder={props.borders || false} isPrimary={image.isPrimary || false}/>
             </Grid>
           )
       )}

@@ -1,18 +1,34 @@
 'use client';
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import { Card, Col, Text } from '@nextui-org/react';
 import { UserProvider } from '@auth0/nextjs-auth0/client';
+
+import ArtCardModal from '../modals/artCard/page';
+
+
 export default function ArtCard(props: any) {
+  const [showModal, setShowModal] = useState(false);
+  const [border, setBorder] = useState('none');
+  useEffect(() => {
+    console.log(props);
+  if(props.showBorder){
+    const color = props.isPrimary ? 'green' : 'black';
+    setBorder(`2px solid ${color}`);
+  }
+}, [props.showBorder])
   return (
+   
     <UserProvider>
       <Card
-        css={{ width: '200px', display: `${props.display}` }}
+        css={{ width: '200px', display: `${props.display}`, border: `${border}` }}
         onPress={
           props.isPressable
-            ? () => window.open(props.image, '_blank')
+            ? () => setShowModal(true)
             : () => {}
         }
         isPressable={props.isPressable || true}
+        borderWeight='bold'
+        
       >
         <Card.Image
           src={props.image}
@@ -22,6 +38,7 @@ export default function ArtCard(props: any) {
           alt={props.title}
         />
       </Card>
+      <ArtCardModal open={showModal} image={props.image} imageId={props.imageId} onClose={() => setShowModal(false)}/>
     </UserProvider>
   );
 }
