@@ -37,7 +37,7 @@ export default function Nav() {
   }, [categories]);
 
   useEffect(() => {
-
+    console.log('selected', selected);
     switch (selected.entries().next().value[0]) {
       case 'profile':
         router.push('/profile');
@@ -51,7 +51,9 @@ export default function Nav() {
         break;
       case 'library':
         if (!user?.email) router.push('/api/auth/login');
-        router.push('/library');
+        else if (user?.email == 'dave@davidghartman.com')  router.push('/library');
+        else router.push('/api/auth/login');
+       
         break;
       case 'configurations':
         router.push('/configurations');

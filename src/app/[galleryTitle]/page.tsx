@@ -4,18 +4,26 @@ import Nav from '../components/nav/page';
 import Layout from '../components/layout/page';
 import ImageGallery from '../components/gallery/page';
 import { usePathname } from 'next/navigation';
-import imgData from '../../../public/images.json';
 import { UserProvider } from '@auth0/nextjs-auth0/client';
 
  interface image {
   id: number;
   name: string;
   url: string;
-  catId: number;
+  categoryid: number;
   isPrimary: boolean;
 }
 
 export default function Gallery() {
+  
+  const [imgData, setImageData] = useState<image[]>([]);
+
+  useEffect(() => {
+  fetch('/imageData').then((res) => res.json()).then((data) => {
+    setImageData(data);
+    console.log('data', data);
+  });
+},([]));
   const [bannerImage, setBannerImage] = useState('');
   const [bodyData, setBodyData] = useState();
 
@@ -25,24 +33,27 @@ export default function Gallery() {
 
   useEffect(() => {
     setCatId(parseInt(router!.substring(1)));
-  }, [router]);
+    console.log('catId', catId);
+  });
 
   useEffect(() => {
+   
     let images = [];
     for (let i = 0; i < imgData.length; i++) {
       if (
-        imgData[i].catId === catId
+        
+        imgData[i].categoryid == catId
       ) {
+         console.log('imgData', imgData[i].categoryid);
         if (imgData[i].isPrimary) {
           setBannerImage(imgData[i].url);
         } else {
           images.push(imgData[i]);
           setImages(images);
         }
-       
       }
     }
-  }, [bannerImage, catId]);
+  }, [catId, imgData.length]);
 
   return (
     <UserProvider>

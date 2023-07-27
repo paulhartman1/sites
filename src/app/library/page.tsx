@@ -1,8 +1,9 @@
 'use client';
-import { Radio } from '@nextui-org/react';
+import { Radio, Text } from '@nextui-org/react';
 import React, { useEffect, useState } from 'react';
 import ImageGallery from '../components/gallery/page';
 import Nav from '../components/nav/page';
+import { couldStartTrivia } from 'typescript';
 
 export default function Library() {
   const [selectedCategory, setSelectedCategory] = useState<number | null>(-1);
@@ -22,7 +23,7 @@ export default function Library() {
       .then((data) => {
         setImageCategories(data);
       });
-  }, [imageCategories.length]);
+  }, [imageCategories.length, loaded]);
 
   useEffect(() => {
     
@@ -31,10 +32,12 @@ export default function Library() {
       .then((data) => {
         for (let i = 0; i < data.length; i++) {
           data[i].display = 'block';
+          data[i].isPrimary = false  ;
           imageCategories[i] &&
-            (data[i].category = imageCategories[i].categoryid);
+            (data[i].categoryid = imageCategories[i].categoryid);
         }
         setImages(data);
+        console.log('images', images);
       });
       setLoaded(true);
   }, [loaded, imageCategories.length]);
@@ -69,12 +72,12 @@ export default function Library() {
       if (selectedCategory === -1) {
         images[i].display = 'block';
       } else if (selectedCategory === -2) {
-        if (images[i].category === null) {
+        if (images[i].categoryid === null) {
           images[i].display = 'block';
         } else {
           images[i].display = 'none';
         }
-      } else if (images[i].category === categories[selectedCategory!].id) {
+      } else if (images[i].categoryid === categories[selectedCategory!].id) {
         images[i].display = 'block';
       } else {
         images[i].display = 'none';
@@ -91,15 +94,15 @@ export default function Library() {
         orientation="horizontal"
         color="secondary"
         onChange={handleCategoryChange}
-        css={{margin: '1rem'}}
+        css={{margin: '0 auto', width: 'fit-content', marginTop: '1em'}}
       >
-        <Radio value="all">All</Radio>
+        <Radio value="all"><Text>All</Text></Radio>
         <Radio value="uncategorized">
-          Uncategorized
+          <Text>Uncategorized</Text>
         </Radio>
         {categories.map((category) => (
           <Radio value={category.name}>
-            {category.name}
+            <Text css={{tt: 'capitalize'}}>{category.name}</Text>
 
           </Radio>
         ))}
@@ -108,6 +111,7 @@ export default function Library() {
         images={images}
         selectedCategory={selectedCategory}
         isPressable={true}
+        borders={true}
       />
     </>
   );
