@@ -32,9 +32,11 @@ const getEvents = async () => {
       title: item.summary || 'Private Event',
       location: item.location || '',
       time: `${new Date(item.start!.dateTime).toLocaleTimeString([], {
+        timeZone: 'America/Denver',
         hour: '2-digit',
         minute: '2-digit',
       })} - ${new Date(item.end!.dateTime).toLocaleTimeString([], {
+        timeZone: 'America/Denver',
         hour: '2-digit',
         minute: '2-digit',
       })}`,

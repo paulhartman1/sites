@@ -1,6 +1,6 @@
 'use client';
 /* eslint-disable react/no-unescaped-entities */
-import { Image, Grid, Button } from '@nextui-org/react';
+import { Image, Grid, Button, Spacer } from '@nextui-org/react';
 import { useEffect, useState } from 'react';
 import LandingText from '../../../../public/landingText';
 import { UserProvider } from '@auth0/nextjs-auth0/client';
@@ -35,6 +35,7 @@ export default function Layout(props: any) {
           <div className="banner-body">{bodyData}</div>
         </Grid>
         <Grid xs={12}>
+          <Spacer y={4} />
           <Button color="primary" className='banner-body' css={{textAlign:'center', margin:'auto', backgroundColor:'$purple800'}}>
             Contact Me
           </Button>
