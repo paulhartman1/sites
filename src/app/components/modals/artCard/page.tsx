@@ -17,7 +17,7 @@ import Mod from '../modal';
 export default function ArtCardModal(props: any) {
   const [menuItems, setMenuItems] = useState([]);
 
-  const imageProps = props.image;
+  const imageProps:IMG = props.image;
   useEffect(() => {
     fetch('/category')
       .then((res) => res.json())
@@ -38,7 +38,7 @@ export default function ArtCardModal(props: any) {
       >
         <Modal.Header>
           <Text h3 id="modal-title">
-            {imageProps.name}
+            {imageProps.title || 'This is a title'}
           </Text>
         </Modal.Header>
         <Modal.Body>
