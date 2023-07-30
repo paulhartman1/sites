@@ -45,6 +45,7 @@ export default function Gallery() {
           setBannerImage(imgData[i].url);
         } else {
           images.push(imgData[i]);
+          console.log(images);
           setImages(images);
         }
       }

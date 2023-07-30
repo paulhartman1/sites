@@ -37,7 +37,7 @@ export default function ArtCard(props: any) {
           objectFit="cover"
           width="100%"
           height={240}
-          alt={props.title}
+          alt={props.image.alt}
         />
       </Card>
       <ArtCardEditModal open={showEditModal} image={props.image} onClose={() => setShowEditModal(false)}/>

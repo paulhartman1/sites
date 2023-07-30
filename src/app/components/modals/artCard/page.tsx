@@ -3,21 +3,15 @@ import {
   Grid,
   Text,
   Modal,
-  Spacer,
-  Image,
-  Input,
-  Button,
+  Image
 } from '@nextui-org/react';
 import React, { useEffect, useState } from 'react';
 import { UserProvider } from '@auth0/nextjs-auth0/client';
-import {Image as IMG} from '@/app/types/image';
-import Mod from '../modal';
-
 
 export default function ArtCardModal(props: any) {
   const [menuItems, setMenuItems] = useState([]);
 
-  const imageProps:IMG = props.image;
+  const imageProps = props.image;
   useEffect(() => {
     fetch('/category')
       .then((res) => res.json())
@@ -38,7 +32,7 @@ export default function ArtCardModal(props: any) {
       >
         <Modal.Header>
           <Text h3 id="modal-title">
-            {imageProps.title || 'This is a title'}
+            {imageProps.name || 'This is a title'}
           </Text>
         </Modal.Header>
         <Modal.Body>
