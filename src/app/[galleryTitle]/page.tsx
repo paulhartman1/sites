@@ -21,11 +21,9 @@ export default function Gallery() {
   useEffect(() => {
   fetch('/imageData').then((res) => res.json()).then((data) => {
     setImageData(data);
-    console.log('data', data);
   });
 },([]));
   const [bannerImage, setBannerImage] = useState('');
-  const [bodyData, setBodyData] = useState();
 
   const [images, setImages] = useState<image[]>([]);
   const router = usePathname();
@@ -33,7 +31,6 @@ export default function Gallery() {
 
   useEffect(() => {
     setCatId(parseInt(router!.substring(1)));
-    console.log('catId', catId);
   });
 
   useEffect(() => {
@@ -44,7 +41,6 @@ export default function Gallery() {
         
         imgData[i].categoryid == catId
       ) {
-         console.log('imgData', imgData[i].categoryid);
         if (imgData[i].isPrimary) {
           setBannerImage(imgData[i].url);
         } else {
@@ -53,6 +49,7 @@ export default function Gallery() {
         }
       }
     }
+  
   }, [catId, imgData.length]);
 
   return (

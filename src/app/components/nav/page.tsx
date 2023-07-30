@@ -12,10 +12,15 @@ export default function Nav() {
   const [showUploadModal, setShowUploadModal] = useState(false);
   const [categories, setCategories] = useState<any>([
     { 0: 'Face Painting' },
-    { 1: 'Bug Shows' },
-    { 2: 'Guitar Lessons' },
-    { 3: 'Art Projects' },
-    { 4: 'Performance Schedule' },
+    // { 1: 'Bug Shows' },
+    // { 2: 'Guitar Lessons' },
+    { 1: 'Art Projects' },
+    { 2: 'Performance Schedule' },
+  ]);
+
+  const [colors, setColors] = useState<any>([
+    //'#ff0000','#ff7f00','#ffff00','#00ff00','#0000ff','#4b0082','#9f07f6'
+    '#000','#000','#000','#000','#000','#000','#000'
   ]);
 
   const [selected, setSelected] = useState(new Set(['text']));
@@ -99,7 +104,9 @@ export default function Nav() {
       <Navbar isBordered variant="floating">
         <Navbar.Toggle showIn={'md'} />
         <Navbar.Brand>
-          <Text b color="inherit" className="logo-text" onClick={handleClick}>
+          <Text b  className="logo-text" onClick={handleClick}   css={{
+    textGradient: "18deg, $red600 10%, $yellow600 20%, $green600 62%, $blue600 40%, $purple600 100%"
+  }}>
             David G Hartman
           </Text>
         </Navbar.Brand>
@@ -110,24 +117,24 @@ export default function Nav() {
               setShowCalModal(true);
             }}
           >
-            Book Me
+            <Text color={colors[0]} blockquote>Book Me</Text>
           </Navbar.Link>
           {categories.map((category: any, index: number) => {
             return (
               <Navbar.Link href={`/${index}`} key={index}>
-                {category[index]}
+                <Text blockquote color={colors[index+1]}>{category[index]}</Text>
               </Navbar.Link>
             );
           })}
         </Navbar.Content>
         <Navbar.Content>
           {!user?.name && (
-            <Navbar.Link color="inherit" href="/api/auth/login">
+            <Navbar.Link color={colors[6]} href="/api/auth/login">
               Login
             </Navbar.Link>
           )}
           {user?.name && (
-            <Navbar.Link color="inherit" href="/api/auth/logout">
+            <Navbar.Link color={colors[6]} href="/api/auth/logout">
               Logout
             </Navbar.Link>
           )}
