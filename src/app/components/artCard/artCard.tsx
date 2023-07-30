@@ -3,8 +3,8 @@ import React, {useEffect, useState} from 'react';
 import { Card, Col, Text } from '@nextui-org/react';
 import { UserProvider, useUser } from '@auth0/nextjs-auth0/client';
 
-import ArtCardEditModal from '../modals/artCardEdit/page';
-import ArtCardModal from '../modals/artCard/page';
+import ArtCardEditModal from '../modals/artCardEdit/artCardEditModal';
+import ArtCardModal from '../modals/artCard/artCardModal';
 
 
 

@@ -1,4 +1,4 @@
-import ArtCard from "../components/artCard/page"
+import ArtCard from "../components/artCard/artCard"
 export default function Test(props: any) {
     return (
         <div>

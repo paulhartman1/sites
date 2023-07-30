@@ -1,6 +1,6 @@
 'use client';
 import { Grid } from '@nextui-org/react';
-import ArtCard from '../artCard/page';
+import ArtCard from '../artCard/artCard';
 import { useEffect, useState } from 'react';
 import { UserProvider } from '@auth0/nextjs-auth0/client';
 import {Image as IMG} from '@/app/types/image';

@@ -10,7 +10,7 @@ import {
 } from '@nextui-org/react';
 import React, { useEffect, useState } from 'react';
 import { UserProvider } from '@auth0/nextjs-auth0/client';
-import ArtCard from '../../artCard/page';
+import ArtCard from '../../artCard/artCard';
 
 export default function ArtCardModal(props: any) {
   const [name, setName] = useState(props.image.name || '');
