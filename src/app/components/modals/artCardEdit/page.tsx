@@ -26,7 +26,6 @@ export default function ArtCardModal(props: any) {
   };
 
   const handleSave = () => {
-    console.log("jkljkljkljkljlkjklj",props,props.imageId, catId);
     fetch('/imageCategory', {
       method: 'PUT',
       body: JSON.stringify({ imageid: props.image.id, categoryid: catId }),

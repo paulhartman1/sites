@@ -11,7 +11,7 @@ import { UserProvider } from '@auth0/nextjs-auth0/client';
 export default function ArtCardModal(props: any) {
   const [menuItems, setMenuItems] = useState([]);
 
-  const imageProps = props.image || {name: '', url: '', description: '', alt: ''};
+  const imageProps = props.image || {name: null, url: null, description: '', alt: ''};
   useEffect(() => {
     fetch('/category')
       .then((res) => res.json())
