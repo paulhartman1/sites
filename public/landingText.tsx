@@ -4,9 +4,9 @@ export default function LandingText() {
     <div className='banner-text'>
      <Text  h1
         size={30}
-        css={{
-          textGradient: "18deg, $red600 10%, $yellow600 20%, $green600 62%, $blue600 40%, $purple600 100%"
-        }}
+        // css={{
+        //   textGradient: "18deg, $red600 10%, $yellow600 20%, $green600 62%, $blue600 40%, $purple600 100%"
+        // }}
         weight="bold">Discover the Healing Power of Art: Break Free from Pain and Addiction</Text>
 
 <Text>Are you struggling with chronic pain and the devastating effects of addiction? Experience a transformative journey of healing through the captivating world of art.</Text>

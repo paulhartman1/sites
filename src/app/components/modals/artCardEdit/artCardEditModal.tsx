@@ -10,16 +10,14 @@ import {
 } from '@nextui-org/react';
 import React, { useEffect, useState } from 'react';
 import { UserProvider } from '@auth0/nextjs-auth0/client';
-import storage from '@/lib/firebaseConfig';
-import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
-import ArtCard from '../../artCard/page';
+import ArtCard from '../../artCard/artCard';
 
 export default function ArtCardModal(props: any) {
-  const [name, setName] = useState('');
-  const [description, setDescription] = useState('');
-  const [alt, setAlt] = useState('');
+  const [name, setName] = useState(props.image.name || '');
+  const [description, setDescription] = useState(props.image.description ||'');
+  const [alt, setAlt] = useState(props.image.alt || '');
   const [menuItems, setMenuItems] = useState([]);
-  const [catId, setCatId] = useState(-1);
+  const [catId, setCatId] = useState(props.image.categoryId || -1);
   const [dropdownText, setDropdownText] = useState('Select a category');
   const [selected, setSelected] = useState(new Set(['text']));
 
@@ -30,12 +28,12 @@ export default function ArtCardModal(props: any) {
   const handleSave = () => {
     fetch('/imageCategory', {
       method: 'PUT',
-      body: JSON.stringify({ imageid: props.imageId, categoryid: catId }),
+      body: JSON.stringify({ imageid: props.image.id, categoryid: catId }),
     })
       .then(() => {
         fetch('/imageData', {
             method: 'PUT',
-            body: JSON.stringify({ id: props.imageId, name: name, description: description, alt: alt }),
+            body: JSON.stringify({ id: props.image.id, name: name, description: description, alt: alt }),
           }).then(() => {
             handleClose();
           })
@@ -51,6 +49,15 @@ export default function ArtCardModal(props: any) {
     setCatId(e.currentKey);
     setDropdownText((menuItems[e.currentKey] as any).name);
   };
+
+useEffect(() => {
+  console.log(props);
+  setName(props.image.name);
+  setDescription(props.image.description);
+  setAlt(props.image.alt);
+  setCatId(props.image.categoryId);
+  setDropdownText(props.image.categoryName);
+},[])
 
   useEffect(() => {
     fetch('/category')
@@ -106,6 +113,7 @@ export default function ArtCardModal(props: any) {
                     clearable
                     width="25em"
                     labelPlaceholder="Name"
+                    value={name}
                     onChange={(e) => {
                       setName(e.target.value);
                     }}
@@ -116,6 +124,7 @@ export default function ArtCardModal(props: any) {
                     clearable
                     width="25em"
                     labelPlaceholder="Description"
+                    value={description}
                     onChange={(e) => {
                       setDescription(e.target.value);
                     }}
@@ -126,6 +135,7 @@ export default function ArtCardModal(props: any) {
                     clearable
                     width="25em"
                     labelPlaceholder="Alt"
+                    value={alt}
                     onChange={(e) => {
                       setAlt(e.target.value);
                     }}
