@@ -11,7 +11,7 @@ import { UserProvider } from '@auth0/nextjs-auth0/client';
 export default function ArtCardModal(props: any) {
   const [menuItems, setMenuItems] = useState([]);
 
-  const imageProps = props.image;
+  const imageProps = props.image || {name: '', url: '', description: '', alt: ''};
   useEffect(() => {
     fetch('/category')
       .then((res) => res.json())
@@ -37,11 +37,11 @@ export default function ArtCardModal(props: any) {
         </Modal.Header>
         <Modal.Body>
           <Grid.Container gap={2} justify="center" css={{ marginTop: 10 }}>
-              <Image src={imageProps.url} alt={imageProps.alt}css={{width:'100%'}}/>
+              <Image src={imageProps.url } alt={imageProps.alt }css={{width:'100%'}}/>
           </Grid.Container>
         </Modal.Body>
         <Modal.Footer>
-          <Text>{imageProps.description || 'This is some text'}</Text>
+          <Text>{imageProps.description}</Text>
         </Modal.Footer>
       </Modal>
     </UserProvider>
