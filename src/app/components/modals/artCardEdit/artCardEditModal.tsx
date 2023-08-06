@@ -91,7 +91,7 @@ useEffect(() => {
             </Dropdown.Button>
             <Dropdown.Menu
               items={menuItems}
-              selectionMode="single"
+              selectionMode="multiple"
               selectedKeys={selected}
               onSelectionChange={handleSelectionChange}
             >
