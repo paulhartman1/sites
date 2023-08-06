@@ -14,8 +14,6 @@ export default function ArtCard(props: any) {
   const [border, setBorder] = useState('none');
   const { user } = useUser();
 
-  const image = props.image;
-
   useEffect(() => {
   if(props.showBorder){
     const color = props.isPrimary ? 'green' : 'black';

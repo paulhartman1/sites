@@ -37,7 +37,6 @@ export default function Library() {
             (data[i].categoryid = imageCategories[i].categoryid);
         }
         setImages(data);
-        console.log('images', images);
       });
       setLoaded(true);
   }, [loaded, imageCategories.length]);
@@ -51,6 +50,7 @@ export default function Library() {
   }, [categories.length]);
 
   const handleCategoryChange = (e: any) => {
+    console.log('e', e);
     if (e == 'all') {
       setSelectedCategory(-1);
       return;
@@ -60,6 +60,7 @@ export default function Library() {
       return;
     }
     for (let i = 0; i < categories.length; i++) {
+      console.log('categories[i].name', categories[i].name);
       if (categories[i].name == e) {
         setSelectedCategory(i);
       }
@@ -67,17 +68,33 @@ export default function Library() {
   };
 
   useEffect(() => {
-  
+  console.log('selectedCategory', images);
     for (let i = 0; i < images.length; i++) {
-      if (selectedCategory === -1) {
-        images[i].display = 'block';
-      } else if (selectedCategory === -2) {
+
+      switch (selectedCategory) {
+        case -1:
+          images[i].display = 'block';
+          break;
+        case -2:
+          if (images[i].categoryid === null) {
+            images[i].display = 'block';
+          }
+          break;
+        default:
+          if (images[i].categoryid == categories[selectedCategory!].id) {
+            images[i].display = 'block';
+          }
+          break;
+
+      }
+       
+      if (selectedCategory === -2) {
         if (images[i].categoryid === null) {
           images[i].display = 'block';
         } else {
           images[i].display = 'none';
         }
-      } else if (images[i].categoryid === categories[selectedCategory!].id) {
+      } else if (images[i].categoryid == categories[selectedCategory!].id) {
         images[i].display = 'block';
       } else {
         images[i].display = 'none';
@@ -110,7 +127,6 @@ export default function Library() {
       <ImageGallery
         images={images}
         selectedCategory={selectedCategory}
-        isPressable={true}
         borders={true}
       />
     </>

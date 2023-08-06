@@ -4,7 +4,6 @@ import {
   Dropdown,
   Modal,
   Spacer,
-  Image,
   Input,
   Button,
 } from '@nextui-org/react';
@@ -47,17 +46,23 @@ export default function ArtCardModal(props: any) {
   const handleSelectionChange = (e: any) => {
     setSelected(e);
     setCatId(e.currentKey);
-    setDropdownText((menuItems[e.currentKey] as any).name);
   };
 
 useEffect(() => {
-  console.log(props);
   setName(props.image.name);
   setDescription(props.image.description);
   setAlt(props.image.alt);
   setCatId(props.image.categoryId);
-  setDropdownText(props.image.categoryName);
-},[])
+ 
+},[menuItems.length])
+
+useEffect(() => {
+  console.log(catId);
+  catId == undefined ? setDropdownText('Uncategorized') :
+  catId === 0 ? setDropdownText('Uncategorized') :
+  catId === -1 ? setDropdownText('Select a category') :
+  setDropdownText((menuItems[catId] as any).name);
+},[catId])
 
   useEffect(() => {
     fetch('/category')

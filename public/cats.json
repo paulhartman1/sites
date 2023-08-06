@@ -1,31 +1,31 @@
 [
     {
-        "id": "0",
+        "id": "facepainting",
         "name": "Face Painting",
         "parent": null
     },
     {
-        "id": "1",
+        "id": "fineart",
         "name": "Fine Art",
         "parent": null
     },
     {
-        "id": "2",
+        "id": "coloredpencil",
         "name": "Colored Pencil",
         "parent": "1"
     },
     {
-        "id": "3",
+        "id": "oilpainting",
         "name": "Oil Painting",
         "parent": "1"
     },
     {
-        "id": "4",
+        "id": "photography",
         "name": "Photography",
         "parent": "1"
     },
     {
-        "id": "5",
+        "id": "naturephotography",
         "name": "Nature Photography",
         "parent": "4"
     }

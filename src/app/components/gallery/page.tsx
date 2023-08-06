@@ -9,7 +9,6 @@ export default function Gallery(props: any) {
 
   useEffect(() => {
     setImages(props.images);
-    console.log('images', images);
     }, [props, images]);
 
 

@@ -11,11 +11,11 @@ export default function Nav() {
   const [showCalModal, setShowCalModal] = useState(false);
   const [showUploadModal, setShowUploadModal] = useState(false);
   const [categories, setCategories] = useState<any>([
-    { 0: 'Face Painting' },
+    { id:'facepainting', text:'Face Painting' },
     // { 1: 'Bug Shows' },
     // { 2: 'Guitar Lessons' },
-    { 1: 'Art Projects' },
-    { 2: 'Performance Schedule' },
+    { id:'artprojects', text: 'Art Projects' },
+    { id:'events', text: 'Performance Schedule' },
   ]);
 
   const [colors, setColors] = useState<any>([
@@ -42,7 +42,6 @@ export default function Nav() {
   }, [categories]);
 
   useEffect(() => {
-    console.log('selected', selected);
     switch (selected.entries().next().value[0]) {
       case 'profile':
         router.push('/profile');
@@ -73,13 +72,6 @@ export default function Nav() {
         break;
     }
 
-    // if (
-    //   selected.entries().next().value[0] == 'upload' &&
-    //   user?.email === 'dave@davidghartman.com'
-    // ) {
-    //   setShowUploadModal(true);
-    //   setSelected(new Set(['text']));
-    // }
   }, [selected]);
 
   const handleProfileMenuSelection = (e: any) => {
@@ -104,7 +96,7 @@ export default function Nav() {
       <Navbar isBordered variant="floating">
         <Navbar.Toggle showIn={'md'} />
         <Navbar.Brand>
-          <Text b  className="logo-text" onClick={handleClick}   css={{
+          <Text b  className="logo-text" onClick={handleClick}  css={{
     textGradient: "18deg, $red600 10%, $yellow600 20%, $green600 62%, $blue600 40%, $purple600 100%"
   }}>
             David G Hartman
@@ -121,8 +113,8 @@ export default function Nav() {
           </Navbar.Link>
           {categories.map((category: any, index: number) => {
             return (
-              <Navbar.Link href={`/${index}`} key={index}>
-                <Text blockquote color={colors[index+1]}>{category[index]}</Text>
+              <Navbar.Link href={`/${category.id}`} key={category.id}>
+                <Text blockquote color={colors[index+1]}>{category.text}</Text>
               </Navbar.Link>
             );
           })}
@@ -138,11 +130,6 @@ export default function Nav() {
               Logout
             </Navbar.Link>
           )}
-          {/* <Navbar.Item>
-            <Button auto flat as={Link} href="#">
-              Sign Up
-            </Button>
-          </Navbar.Item> */}
 
           {
             <Dropdown placement="bottom-right">

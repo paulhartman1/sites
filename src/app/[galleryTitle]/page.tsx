@@ -10,7 +10,7 @@ import { UserProvider } from '@auth0/nextjs-auth0/client';
   id: number;
   name: string;
   url: string;
-  categoryid: number;
+  categoryid: string;
   isPrimary: boolean;
 }
 
@@ -27,10 +27,12 @@ export default function Gallery() {
 
   const [images, setImages] = useState<image[]>([]);
   const router = usePathname();
-  const [catId, setCatId] = useState(-1);
+  const [catId, setCatId] = useState('');
 
   useEffect(() => {
-    setCatId(parseInt(router!.substring(1)));
+    console.log('router: ' + router);
+    setCatId(router!.substring(1));
+    console.log('catId: ' + catId);
   });
 
   useEffect(() => {
@@ -45,7 +47,6 @@ export default function Gallery() {
           setBannerImage(imgData[i].url);
         } else {
           images.push(imgData[i]);
-          console.log(images);
           setImages(images);
         }
       }
